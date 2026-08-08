@@ -3,6 +3,7 @@ async function POSTFUNC(formId, url, method, err){
     const formElement = document.getElementById(formId);
     let formData = new FormData(formElement);
     let details = JSON.stringify(Object.fromEntries(formData));
+    console.log(details);
 
     try{
         const response = await fetch(`http://localhost:8000/${url}`,{
@@ -30,11 +31,9 @@ async function GETFUNC(url, err){
 async function sendRequest(event, formId, userId, endpoint, method, err){
     event.preventDefault();
     let userUrl = `${userId}/${endpoint}`;
-    console.log("User Url: ",userUrl)
     
 
     const response = await POSTFUNC(formId, userUrl, method, err);
-    console.log("UserId: ",userId)
 
     switch(response.status){
         case 200:
